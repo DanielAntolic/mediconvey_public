@@ -1,0 +1,8 @@
+$folder="$env:LOCALAPPDATA\Mediconvey"; 
+if(!(Test-Path $folder)){New-Item -ItemType Directory -Path $folder | Out-Null}; 
+$icon="$folder\icon.ico"; 
+Invoke-WebRequest "https://github.com/DanielAntolic/mediconvey_public/raw/refs/heads/main/Mediconvey_Logo/mediconvey_win_logo.ico" -OutFile $icon -UseBasicParsing; 
+$desktop=[Environment]::GetFolderPath("Desktop"); 
+$shortcut="$desktop\MediConvey.url"; 
+$content="[InternetShortcut]`nURL=https://my.mediconvey.de/`nIconFile=$icon`nIconIndex=0"; 
+$content | Set-Content -Path $shortcut -Encoding ASCII -Force
